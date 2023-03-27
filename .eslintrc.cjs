@@ -1,89 +1,55 @@
-const DOMGlobals = ['window', 'document']
-const NodeGlobals = ['module', 'require']
+require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    sourceType: 'module'
+  root: true,
+  env: {
+    node: true,
   },
-  plugins: ['jest'],
+  extends: [
+    'eslint:recommended',
+    'plugin:sonarjs/recommended',
+    'plugin:vue/recommended',
+    '@vue/typescript/recommended',
+    '@vue/eslint-config-prettier',
+    'prettier',
+  ],
+  plugins: ['sonarjs', 'vue', 'prettier'],
   rules: {
-    'no-debugger': 'error',
-    'no-unused-vars': [
+    // 强制数组方法的回调函数中有 return 语句
+    'array-callback-return': 'error',
+    // 限制函数圈复杂度不超过 10
+    complexity: ['error', 10],
+    // 限制函数认知复杂度不超过 15
+    'sonarjs/cognitive-complexity': ['error', 15],
+    // 要求函数使用一致的 return 语句【总是指定返回值或返回 undefined 无论是隐式或显式】
+    'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
+    // 禁止在 else 前有 return
+    'no-else-return': 'error',
+    // 禁止使用不带 await 表达式的 async 函数
+    'require-await': 'error',
+    // 禁止在undefined值上使用可选链
+    'no-unsafe-optional-chaining': 'error',
+    // 在模块中强制执行排序的导入声明。
+    'sort-imports': [
       'error',
-      // we are only using this rule to check for unused arguments since TS
-      // catches unused variables but not args.
-      { varsIgnorePattern: '.*', args: 'none' }
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+      },
     ],
-    // most of the codebase are expected to be env agnostic
-    'no-restricted-globals': ['error', ...DOMGlobals, ...NodeGlobals],
-
-    'no-restricted-syntax': [
+    // 禁止在外部作用域中声明的隐藏变量的变量声明
+    '@typescript-eslint/no-shadow': 'error',
+    // 在类属性和方法上需要显式可访问性修饰符
+    '@typescript-eslint/explicit-member-accessibility': [
       'error',
-      // since we target ES2015 for baseline support, we need to forbid object
-      // rest spread usage in destructure as it compiles into a verbose helper.
-      'ObjectPattern > RestElement',
-      // tsc compiles assignment spread into Object.assign() calls, but esbuild
-      // still generates verbose helpers, so spread assignment is also prohiboted
-      'ObjectExpression > SpreadElement',
-      'AwaitExpression'
-    ]
+      {
+        accessibility: 'explicit',
+        overrides: {
+          constructors: 'no-public',
+          methods: 'explicit',
+        },
+      },
+    ],
   },
-  overrides: [
-    // tests, no restrictions (runs in Node / jest with jsdom)
-    {
-      files: ['**/__tests__/**', 'packages/dts-test/**'],
-      rules: {
-        'no-restricted-globals': 'off',
-        'no-restricted-syntax': 'off',
-        'jest/no-disabled-tests': 'error',
-        'jest/no-focused-tests': 'error'
-      }
-    },
-    // shared, may be used in any env
-    {
-      files: ['packages/shared/**'],
-      rules: {
-        'no-restricted-globals': 'off'
-      }
-    },
-    // Packages targeting DOM
-    {
-      files: ['packages/{vue,vue-compat,runtime-dom}/**'],
-      rules: {
-        'no-restricted-globals': ['error', ...NodeGlobals]
-      }
-    },
-    // Packages targeting Node
-    {
-      files: [
-        'packages/{compiler-sfc,compiler-ssr,server-renderer,reactivity-transform}/**'
-      ],
-      rules: {
-        'no-restricted-globals': ['error', ...DOMGlobals],
-        'no-restricted-syntax': 'off'
-      }
-    },
-    // Private package, browser only + no syntax restrictions
-    {
-      files: ['packages/template-explorer/**', 'packages/sfc-playground/**'],
-      rules: {
-        'no-restricted-globals': ['error', ...NodeGlobals],
-        'no-restricted-syntax': 'off'
-      }
-    },
-    // Node scripts
-    {
-      files: [
-        'scripts/**',
-        './*.js',
-        'packages/**/index.js',
-        'packages/size-check/**'
-      ],
-      rules: {
-        'no-restricted-globals': 'off',
-        'no-restricted-syntax': 'off'
-      }
-    }
-  ]
 }
