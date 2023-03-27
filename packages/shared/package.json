@@ -1,0 +1,13 @@
+{
+  "name": "aurora-shared",
+  "version": "1.0.0",
+  "description": "internal utils shared across packages",
+  "main": "index.js",
+  "module": "dist/shared.esm-bundler.js",
+  "types": "dist/shared.d.ts",
+  "author": "greenmashimaro",
+  "license": "MIT",
+  "dependencies": {
+    "@vue/shared": "1.0.0"
+  }
+}
