@@ -8,6 +8,6 @@
   "author": "greenmashimaro",
   "license": "MIT",
   "dependencies": {
-    "@vue/shared": "1.0.0"
+    "aurora-vue-shared": "1.0.0"
   }
 }

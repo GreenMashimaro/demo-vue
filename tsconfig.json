@@ -19,12 +19,11 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": ["vitest/globals", "puppeteer", "node"],
+    "types": ["node"],
     "rootDir": ".",
     "paths": {
-      "@vue/compat": ["packages/vue-compat/src"],
-      "@vue/*": ["packages/*/src"],
-      "vue": ["packages/vue/src"]
+      "aurora-vue": ["packages/vue/src"],
+      "aurora-vue-*": ["packages/*/src"]
     }
   },
   "include": [

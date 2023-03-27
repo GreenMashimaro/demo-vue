@@ -7,7 +7,10 @@
   "types": "dist/vue.d.ts",
   "author": "greenmashimaro",
   "license": "MIT",
+  "exports": {
+    "./dist/*": "./dist/*"
+  },
   "dependencies": {
-    "@vue/shared": "1.0.0"
+    "aurora-vue-shared": "1.0.0"
   }
 }
