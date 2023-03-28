@@ -88,7 +88,7 @@ importers:
 
   packages/reactivity:
     specifiers:
-      aurora-vue-shared: 1.0.0
+      aurora-vue-shared: 1.0.1
     dependencies:
       aurora-vue-shared: link:../shared
 
@@ -97,7 +97,7 @@ importers:
 
   packages/vue:
     specifiers:
-      aurora-vue-shared: 1.0.0
+      aurora-vue-shared: 1.0.1
     dependencies:
       aurora-vue-shared: link:../shared
 

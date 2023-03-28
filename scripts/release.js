@@ -28,11 +28,11 @@ const packages = fs
 const isCorePackage = (pkgName) => {
   if (!pkgName) return
 
-  if (pkgName === 'vue' || pkgName === '@vue/compat') {
+  if (pkgName === 'aurora-vue') {
     return true
   }
 
-  return pkgName.startsWith('@vue') && packages.includes(pkgName.replace(/^@vue\//, ''))
+  return pkgName.startsWith('aurora-vue-')
 }
 
 const renamePackageToCanary = (pkgName) => {
