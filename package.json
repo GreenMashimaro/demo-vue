@@ -10,10 +10,24 @@
     "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
     "test": "vitest",
-    "lint": "eslint --cache --ext .ts packages/*/src/**.ts"
+    "lint": "eslint --cache --ext .ts packages/*/src/**.ts",
+    "check": "tsc --incremental --noEmit",
+    "postinstall": "simple-git-hooks"
   },
   "engines": {
     "node": ">=16.11.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged && pnpm check"
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "eslint",
+      "prettier --parser=typescript --write"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -34,7 +48,7 @@
     "esbuild": "^0.17.14",
     "execa": "^4.0.2",
     "jsdom": "^21.1.1",
-    "lint-staged": "^13.2.0",
+    "lint-staged": "^10.2.10",
     "magic-string": "^0.30.0",
     "minimist": "^1.2.8",
     "@rushstack/eslint-patch": "^1.1.4",
@@ -51,6 +65,7 @@
     "rollup": "^3.20.2",
     "rollup-plugin-esbuild": "^5.0.0",
     "rollup-plugin-polyfill-node": "^0.12.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "simple-git-hooks": "^2.8.1"
   }
 }
