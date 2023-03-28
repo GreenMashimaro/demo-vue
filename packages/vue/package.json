@@ -1,6 +1,6 @@
 {
   "name": "aurora-vue",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "The progressive JavaScript framework for building modern web UI.",
   "main": "index.js",
   "module": "dist/vue.runtime.esm-bundler.js",
@@ -11,6 +11,6 @@
     "./dist/*": "./dist/*"
   },
   "dependencies": {
-    "aurora-vue-shared": "1.0.1"
+    "aurora-vue-shared": "1.0.0"
   }
 }

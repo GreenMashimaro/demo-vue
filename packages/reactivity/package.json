@@ -1,6 +1,6 @@
 {
   "name": "aurora-vue-reactivity",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "reactivity",
   "main": "index.js",
   "module": "dist/reactivity.esm-bundler.js",
@@ -8,6 +8,6 @@
   "author": "greenmashimaro",
   "license": "MIT",
   "dependencies": {
-    "aurora-vue-shared": "1.0.1"
+    "aurora-vue-shared": "1.0.0"
   }
 }

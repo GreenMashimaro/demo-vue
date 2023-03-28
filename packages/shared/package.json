@@ -1,6 +1,6 @@
 {
   "name": "aurora-vue-shared",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "internal utils shared across packages",
   "main": "index.js",
   "module": "dist/shared.esm-bundler.js",
