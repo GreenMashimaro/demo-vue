@@ -23,7 +23,8 @@
     "node": ">=16.11.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged && pnpm check"
+    "pre-commit": "pnpm lint-staged && pnpm check",
+    "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
     "*.{js,json}": [

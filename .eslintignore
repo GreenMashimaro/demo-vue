@@ -2,3 +2,4 @@
 dist
 
 rollup.dts.config.js
+verifyCommit.js
