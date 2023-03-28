@@ -27,6 +27,12 @@ pnpm run build vue
 ## Script
 
 ```
+// release all packages
+pnpm run release
+```
+
+
+```
 // generate dts file
 pnpm run build-dts
 ```
