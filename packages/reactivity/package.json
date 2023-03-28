@@ -1,5 +1,5 @@
 {
-  "name": "aurora-reactivity",
+  "name": "aurora-vue-reactivity",
   "version": "1.0.0",
   "description": "reactivity",
   "main": "index.js",
